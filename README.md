@@ -1,56 +1,68 @@
-# Sistema de Recomendacao com FastAPI e Docker
+Sistema de Recomendação com FastAPI e Docker
+Este repositório contém a implementação do trabalho acadêmico "Desenvolvimento de um Sistema de Recomendação".
 
-Repositorio inicial do trabalho "Desenvolvimento de um Sistema de Recomendacao".
+Escopo do Projeto
+De acordo com os requisitos propostos, o projeto contempla:
 
-## O que o PDF pede
+Dataset: Utilização de um dataset público (MovieLens 100K).
 
-- Escolha de um dataset publico ou fornecido pelo professor.
-- Implementacao de um modelo de recomendacao com filtragem colaborativa, baseada em conteudo ou hibrida.
-- Criacao de uma API com FastAPI para:
-  - adicionar usuarios e itens
-  - obter recomendacoes para um usuario
-  - atualizar preferencias de um usuario
-- Containerizacao com Docker e, se necessario, `docker-compose`.
-- Documentacao automatica via Swagger UI.
-- Testes unitarios e de integracao.
+Modelo de Recomendação: Implementação de um sistema de filtragem baseada em conteúdo (content-based), com flexibilidade para filtragem colaborativa ou híbrida.
 
-## Estado atual
+API REST: Desenvolvimento de uma API utilizando FastAPI com as seguintes funcionalidades:
 
-- Estrutura inicial do projeto.
-- API minima em FastAPI.
-- Base para Docker e testes.
-- Dataset escolhido: MovieLens 100K.
-- Base do recomendador content-based preparada.
-- Plano de entregas a cada 2 dias ate 22/06/2026.
+Adição de usuários e itens.
 
-## Dataset escolhido
+Geração de recomendações personalizadas para um usuário.
 
-O projeto foi configurado para usar o [MovieLens 100K](https://grouplens.org/datasets/movielens/100k/), com fallback para um catalogo pequeno de desenvolvimento quando o dataset ainda nao estiver baixado localmente.
+Atualização de preferências do usuário.
 
-## Roadmap curto
+Infraestrutura: Conteinerização da aplicação utilizando Docker e docker-compose.
 
-- 01/06 a 02/06: organizar o repo, ler o PDF e definir o escopo.
-- 03/06 a 04/06: escolher o dataset e preparar o ambiente.
-- 05/06 a 06/06: montar a base da API e a estrutura do projeto.
-- 07/06 a 08/06: criar a primeira versao do modelo de recomendacao.
-- 09/06 a 10/06: integrar o modelo aos endpoints da API.
-- 11/06 a 12/06: adicionar Dockerfile e `docker-compose.yml`.
-- 13/06 a 14/06: escrever testes unitarios e de integracao.
-- 15/06 a 16/06: melhorar a documentacao e exemplos de uso.
-- 17/06 a 18/06: ajustar qualidade, validacoes e casos de erro.
-- 19/06 a 20/06: revisar tudo e corrigir falhas finais.
-- 21/06 a 22/06: preparar a demonstracao final para o professor.
+Documentação: Documentação interativa e automática da API gerada via Swagger UI.
 
-## Como rodar localmente
+Testes: Cobertura de testes unitários e de integração.
 
-```bash
+Status Atual
+Estrutura inicial do projeto configurada.
+
+API mínima funcional rodando em FastAPI.
+
+Configuração base para Docker e ambiente de testes concluída.
+
+Base do sistema de recomendação preparada e integrada ao dataset MovieLens 100K.
+
+Sobre o Dataset
+O projeto está configurado para consumir o MovieLens 100K. Caso o dataset não seja encontrado no ambiente local, o sistema possui um mecanismo de fallback para um catálogo reduzido, focado em facilitar o desenvolvimento e testes rápidos.
+
+Cronograma de Entregas
+01/06 a 02/06: Organização do repositório, análise dos requisitos e definição de escopo.
+
+03/06 a 04/06: Escolha do dataset e preparação do ambiente.
+
+05/06 a 06/06: Estruturação da API e da arquitetura base do projeto.
+
+07/06 a 08/06: Implementação da primeira versão do modelo de recomendação.
+
+09/06 a 10/06: Integração do modelo de recomendação aos endpoints da API.
+
+11/06 a 12/06: Criação do Dockerfile e do docker-compose.yml.
+
+13/06 a 14/06: Escrita e execução dos testes unitários e de integração.
+
+15/06 a 16/06: Refinamento da documentação (Swagger) e adição de exemplos de uso.
+
+17/06 a 18/06: Ajustes de qualidade, tratamento de erros e validações da API.
+
+19/06 a 20/06: Revisão geral e correção de bugs finais.
+
+21/06 a 22/06: Preparação para a apresentação e entrega final.
+
+Execução
+Rodando Localmente
+Bash
 pip install -r requirements.txt
 python scripts/download_movielens_100k.py
 uvicorn app.main:app --reload
-```
-
-## Como rodar com Docker
-
-```bash
+Rodando com Docker
+Bash
 docker compose up --build
-```
