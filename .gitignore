@@ -15,4 +15,4 @@ htmlcov/
 .coverage
 coverage.xml
 *.log
-
+data/

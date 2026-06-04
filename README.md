@@ -19,7 +19,13 @@ Repositorio inicial do trabalho "Desenvolvimento de um Sistema de Recomendacao".
 - Estrutura inicial do projeto.
 - API minima em FastAPI.
 - Base para Docker e testes.
+- Dataset escolhido: MovieLens 100K.
+- Base do recomendador content-based preparada.
 - Plano de entregas a cada 2 dias ate 22/06/2026.
+
+## Dataset escolhido
+
+O projeto foi configurado para usar o [MovieLens 100K](https://grouplens.org/datasets/movielens/100k/), com fallback para um catalogo pequeno de desenvolvimento quando o dataset ainda nao estiver baixado localmente.
 
 ## Roadmap curto
 
@@ -39,6 +45,7 @@ Repositorio inicial do trabalho "Desenvolvimento de um Sistema de Recomendacao".
 
 ```bash
 pip install -r requirements.txt
+python scripts/download_movielens_100k.py
 uvicorn app.main:app --reload
 ```
 
