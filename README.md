@@ -34,7 +34,8 @@ Base do sistema de recomendação preparada e integrada ao dataset MovieLens 100
 Sobre o Dataset
 O projeto está configurado para consumir o MovieLens 100K. Caso o dataset não seja encontrado no ambiente local, o sistema possui um mecanismo de fallback para um catálogo reduzido, focado em facilitar o desenvolvimento e testes rápidos.
 
-Cronograma de Entregas
+Cronograma de Entregas:
+
 01/06 a 02/06: Organização do repositório, análise dos requisitos e definição de escopo.
 
 03/06 a 04/06: Escolha do dataset e preparação do ambiente.
@@ -59,10 +60,13 @@ Cronograma de Entregas
 
 Execução
 Rodando Localmente
-Bash
+
 pip install -r requirements.txt
+
 python scripts/download_movielens_100k.py
+
 uvicorn app.main:app --reload
+
 Rodando com Docker
-Bash
+
 docker compose up --build
