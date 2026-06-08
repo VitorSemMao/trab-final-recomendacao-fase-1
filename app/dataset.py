@@ -37,6 +37,7 @@ class CatalogItem:
     tags: list[str]
     rating_count: int = 0
     average_rating: float = 0.0
+    rating_total: float = 0.0
 
 
 def normalize_text(value: str) -> str:
@@ -59,7 +60,7 @@ def dedupe_preserve_order(values: list[str]) -> list[str]:
 
 
 def _fallback_catalog() -> list[CatalogItem]:
-    return [
+    catalog = [
         CatalogItem(1, "The Matrix", ["Action", "Sci-Fi"], 900, 4.7),
         CatalogItem(2, "Toy Story", ["Animation", "Comedy", "Family"], 850, 4.5),
         CatalogItem(3, "Inception", ["Action", "Sci-Fi", "Thriller"], 920, 4.6),
@@ -69,6 +70,9 @@ def _fallback_catalog() -> list[CatalogItem]:
         CatalogItem(7, "The Notebook", ["Romance", "Drama"], 700, 4.2),
         CatalogItem(8, "Mad Max: Fury Road", ["Action", "Adventure", "Thriller"], 760, 4.3),
     ]
+    for item in catalog:
+        item.rating_total = item.rating_count * item.average_rating
+    return catalog
 
 
 def _find_movielens_root(dataset_root: Path) -> Path | None:
@@ -115,6 +119,7 @@ def _load_movielens_100k(dataset_root: Path) -> list[CatalogItem]:
         total = rating_totals.get(item_id, 0.0)
         item.rating_count = count
         item.average_rating = total / count if count else 0.0
+        item.rating_total = total
 
     return sorted(catalog.values(), key=lambda item: item.item_id)
 

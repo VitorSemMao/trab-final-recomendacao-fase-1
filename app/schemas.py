@@ -15,6 +15,11 @@ class PreferenceUpdate(BaseModel):
     preferences: list[str] = Field(default_factory=list)
 
 
+class RatingCreate(BaseModel):
+    item_id: int = Field(ge=1)
+    rating: float = Field(ge=0, le=5)
+
+
 class UserRead(BaseModel):
     id: int
     name: str
@@ -32,6 +37,12 @@ class RecommendationRead(BaseModel):
     title: str
     tags: list[str]
     score: float
+
+
+class RatingRead(BaseModel):
+    user_id: int
+    item_id: int
+    rating: float
 
 
 class DatasetRead(BaseModel):

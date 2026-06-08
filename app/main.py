@@ -4,6 +4,8 @@ from .schemas import (
     DatasetRead,
     ItemCreate,
     ItemRead,
+    RatingCreate,
+    RatingRead,
     PreferenceUpdate,
     RecommendationRead,
     UserCreate,
@@ -14,7 +16,7 @@ from .service import RecommendationService
 
 def create_app(service: RecommendationService | None = None) -> FastAPI:
     recommender = service or RecommendationService()
-    app = FastAPI(title="Sistema de Recomendacao", version="0.2.0")
+    app = FastAPI(title="Sistema de Recomendacao", version="0.3.0")
     app.state.recommender = recommender
 
     def as_user_read(user) -> UserRead:
@@ -35,8 +37,8 @@ def create_app(service: RecommendationService | None = None) -> FastAPI:
     def root() -> dict[str, str]:
         return {
             "message": "Projeto inicial do sistema de recomendacao",
-            "phase": "fase 2",
-            "status": "dataset e recomendador inicial prontos",
+            "phase": "fase 3",
+            "status": "feedback de usuario e recomendador hibrido prontos",
             "dataset": recommender.dataset_source,
         }
 
@@ -77,6 +79,16 @@ def create_app(service: RecommendationService | None = None) -> FastAPI:
         except KeyError as error:
             raise HTTPException(status_code=404, detail="Usuario nao encontrado.") from error
         return as_user_read(user)
+
+    @app.post("/users/{user_id}/ratings", response_model=RatingRead, status_code=201)
+    def rate_item(user_id: int, payload: RatingCreate) -> RatingRead:
+        try:
+            user, _item = recommender.rate_item(user_id, payload.item_id, payload.rating)
+        except KeyError as error:
+            error_message = str(error.args[0] if error.args else "")
+            message = "Usuario nao encontrado." if "User" in error_message else "Item nao encontrado."
+            raise HTTPException(status_code=404, detail=message) from error
+        return RatingRead(user_id=user.user_id, item_id=payload.item_id, rating=payload.rating)
 
     return app
 

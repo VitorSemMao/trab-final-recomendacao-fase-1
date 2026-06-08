@@ -23,3 +23,8 @@ O script baixa o arquivo oficial `ml-100k.zip` e extrai os arquivos no diretorio
 
 Se o dataset ainda nao estiver presente, a aplicacao usa um catalogo pequeno interno para manter a API funcional durante o desenvolvimento.
 
+## Uso no motor de recomendacao
+
+- As preferencias do usuario ajudam a montar o perfil inicial.
+- As notas recebidas em `POST /users/{user_id}/ratings` alimentam a parte colaborativa do ranking.
+- Itens ja avaliados pelo proprio usuario sao removidos das recomendacoes para evitar repeticao.
