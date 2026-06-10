@@ -61,3 +61,5 @@ uvicorn app.main:app --reload
 ```bash
 docker compose up --build
 ```
+
+O `docker-compose.yml` monta `./data` para persistir o dataset baixado e tenta obter o MovieLens 100K na inicializacao. Se o download nao estiver disponivel, a API continua funcionando com o catalogo de fallback.

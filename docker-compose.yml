@@ -1,8 +1,11 @@
 services:
   api:
     build: .
+    environment:
+      MOVIELENS_100K_DIR: /app/data/movielens-100k
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      - ./data:/app/data
+    command: sh -c "python scripts/download_movielens_100k.py || true && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
