@@ -48,6 +48,14 @@ A API aceita notas em `POST /users/{user_id}/ratings` e combina:
 
 ## Execucao
 
+### Scripts uteis
+
+```bash
+bash scripts/install.sh
+bash scripts/run.sh
+bash scripts/test.sh
+```
+
 ### Rodando localmente
 
 ```bash
@@ -63,3 +71,8 @@ docker compose up --build
 ```
 
 O `docker-compose.yml` monta `./data` para persistir o dataset baixado e tenta obter o MovieLens 100K na inicializacao. Se o download nao estiver disponivel, a API continua funcionando com o catalogo de fallback.
+
+## Documentacao adicional
+
+- [Dataset escolhido](docs/dataset.md)
+- [Decisoes de design](docs/decisions.md)

@@ -16,3 +16,4 @@ htmlcov/
 coverage.xml
 *.log
 data/
+api_demo.html
